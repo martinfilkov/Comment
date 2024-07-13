@@ -7,6 +7,6 @@ public class URLMapping {
     public final static String PARTIAL_UPDATE_COMMENT = "/api/hotel/comment/{commentId}";
 
     //System
-    public final static String UPDATE_COMMENT = "/api/hotel/comment/{commentId}";
-    public final static String DELETE_COMMENT = "/api/hotel/comment/{commentId}";
+    public final static String UPDATE_COMMENT = "/api/system/comment/{commentId}";
+    public final static String DELETE_COMMENT = "/api/system/comment/{commentId}";
 }
