@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.PartialUpdateCommentInput;
 import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishCommentInput;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 @AutoConfigureMockMvc
 class HotelControllerTest {
 
@@ -24,9 +23,6 @@ class HotelControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
-
-    @InjectMocks
-    private HotelController hotelController;
 
     @Test
     public void givenRoomId_whenGetComments_thenReturnCommentsList() throws Exception {
