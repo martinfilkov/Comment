@@ -33,3 +33,6 @@ build/
 
 ### Flatten Pom ###
 **/*.flattened-pom.xml
+
+### Application Properties ###
+**/*.application.properties
