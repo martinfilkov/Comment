@@ -1,4 +1,4 @@
-package com.tinqinacademy.comment.core;
+package com.tinqinacademy.comment.core.services;
 
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentInput;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOutput;

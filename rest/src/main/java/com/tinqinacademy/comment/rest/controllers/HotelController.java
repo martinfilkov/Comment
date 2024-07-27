@@ -6,7 +6,7 @@ import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.Parti
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.PartialUpdateCommentOutput;
 import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishCommentInput;
 import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishCommentOutput;
-import com.tinqinacademy.comment.core.HotelService;
+import com.tinqinacademy.comment.core.services.HotelService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;

@@ -4,7 +4,7 @@ import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteComme
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOutput;
 import com.tinqinacademy.comment.api.operations.system.updatecomment.UpdateCommentInput;
 import com.tinqinacademy.comment.api.operations.system.updatecomment.UpdateCommentOutput;
-import com.tinqinacademy.comment.core.SystemService;
+import com.tinqinacademy.comment.core.services.SystemService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;

@@ -1,4 +1,4 @@
-package com.tinqinacademy.comment.core;
+package com.tinqinacademy.comment.core.services;
 
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsInput;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsOutputList;
