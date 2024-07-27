@@ -15,7 +15,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class HotelServiceImpl implements HotelService{
+public class HotelServiceImpl implements HotelService {
     @Override
     public GetCommentsOutputList getComments(GetCommentsInput input) {
         log.info("Start getComments input: {}", input);
