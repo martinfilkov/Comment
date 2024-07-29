@@ -61,8 +61,8 @@ public class HotelController {
             @ApiResponse(responseCode = "403", description = "User not authorized"),
             @ApiResponse(responseCode = "404", description = "Comment not found")
     })
-    @PatchMapping(URLMapping.PARTIAL_UPDATE_COMMENT)
-    public ResponseEntity<ContentUpdateCommentOutput> partialUpdate(
+    @PutMapping(URLMapping.CONTENT_UPDATE_COMMENT)
+    public ResponseEntity<ContentUpdateCommentOutput> contentUpdate(
             @PathVariable("commentId") String id,
             @Valid @RequestBody ContentUpdateCommentInput request
             ){

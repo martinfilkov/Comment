@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @Builder(toBuilder = true)
 @ToString
-public class UpdateCommentInput {
+public class AdminUpdateCommentInput {
     @JsonIgnore
     private String commentId;
 

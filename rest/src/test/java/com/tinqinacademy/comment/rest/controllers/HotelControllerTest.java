@@ -62,7 +62,7 @@ class HotelControllerTest {
 
         String requestBody = objectMapper.writeValueAsString(input);
 
-        mockMvc.perform(patch(URLMapping.PARTIAL_UPDATE_COMMENT, input.getCommentId())
+        mockMvc.perform(patch(URLMapping.CONTENT_UPDATE_COMMENT, input.getCommentId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())

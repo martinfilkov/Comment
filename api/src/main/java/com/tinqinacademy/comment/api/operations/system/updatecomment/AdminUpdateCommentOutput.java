@@ -8,6 +8,6 @@ import lombok.*;
 @Setter
 @Builder
 @ToString
-public class UpdateCommentOutput {
+public class AdminUpdateCommentOutput {
     private String id;
 }

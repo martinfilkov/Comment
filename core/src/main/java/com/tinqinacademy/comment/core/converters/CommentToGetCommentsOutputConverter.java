@@ -6,9 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.util.UUID;
-
 @Slf4j
 @Component
 public class CommentToGetCommentsOutputConverter implements Converter<Comment, GetCommentsOutput> {
