@@ -1,7 +1,7 @@
 package com.tinqinacademy.comment.rest.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.PartialUpdateCommentInput;
+import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentInput;
 import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishCommentInput;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,14 +55,14 @@ class HotelControllerTest {
 
     @Test
     public void givenUpdateInput_whenPartialUpdateComment_thenReturnUpdateCommentId() throws Exception {
-        PartialUpdateCommentInput input = PartialUpdateCommentInput.builder()
+        ContentUpdateCommentInput input = ContentUpdateCommentInput.builder()
                 .commentId("1")
                 .content("CONTENT")
                 .build();
 
         String requestBody = objectMapper.writeValueAsString(input);
 
-        mockMvc.perform(patch(URLMapping.PARTIAL_UPDATE_COMMENT, input.getCommentId())
+        mockMvc.perform(patch(URLMapping.CONTENT_UPDATE_COMMENT, input.getCommentId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())

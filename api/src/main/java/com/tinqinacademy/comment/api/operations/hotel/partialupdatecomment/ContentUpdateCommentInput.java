@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @Builder(toBuilder = true)
 @ToString
-public class PartialUpdateCommentInput {
+public class ContentUpdateCommentInput {
     @JsonIgnore
     private String commentId;
 

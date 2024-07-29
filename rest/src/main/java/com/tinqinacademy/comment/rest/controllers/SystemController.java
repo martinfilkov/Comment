@@ -2,9 +2,9 @@ package com.tinqinacademy.comment.rest.controllers;
 
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentInput;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOutput;
-import com.tinqinacademy.comment.api.operations.system.updatecomment.UpdateCommentInput;
-import com.tinqinacademy.comment.api.operations.system.updatecomment.UpdateCommentOutput;
-import com.tinqinacademy.comment.core.SystemService;
+import com.tinqinacademy.comment.api.operations.system.updatecomment.AdminUpdateCommentInput;
+import com.tinqinacademy.comment.api.operations.system.updatecomment.AdminUpdateCommentOutput;
+import com.tinqinacademy.comment.core.services.SystemService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
@@ -27,16 +27,16 @@ public class SystemController {
             @ApiResponse(responseCode = "403", description = "User not authorized"),
             @ApiResponse(responseCode = "404", description = "Comment not found")
     })
-    @PutMapping(URLMapping.UPDATE_COMMENT)
-    public ResponseEntity<UpdateCommentOutput> updateComment(
+    @PatchMapping(URLMapping.ADMIN_UPDATE_COMMENT)
+    public ResponseEntity<AdminUpdateCommentOutput> adminUpdateComment(
             @PathVariable("commentId") String id,
-            @Valid @RequestBody UpdateCommentInput request
+            @Valid @RequestBody AdminUpdateCommentInput request
             ){
-        UpdateCommentInput input = request.toBuilder()
+        AdminUpdateCommentInput input = request.toBuilder()
                 .commentId(id)
                 .build();
 
-        UpdateCommentOutput output = systemService.updateComment(input);
+        AdminUpdateCommentOutput output = systemService.adminUpdateComment(input);
 
         return new ResponseEntity<>(output, HttpStatus.OK);
     }

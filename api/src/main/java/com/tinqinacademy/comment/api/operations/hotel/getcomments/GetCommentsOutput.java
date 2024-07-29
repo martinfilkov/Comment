@@ -3,6 +3,8 @@ package com.tinqinacademy.comment.api.operations.hotel.getcomments;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +17,7 @@ public class GetCommentsOutput {
     private String firstName;
     private String lastName;
     private String content;
-    private LocalDate publishDate;
-    private LocalDate lastEditedDate;
-    private LocalDate lastEditedBy;
+    private LocalDateTime publishDate;
+    private LocalDateTime lastEditedDate;
+    private UUID lastEditedBy;
 }
