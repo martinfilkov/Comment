@@ -4,8 +4,8 @@ import com.tinqinacademy.comment.api.operations.exception.NotFoundException;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsInput;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsOutput;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsOutputList;
-import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.PartialUpdateCommentInput;
-import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.PartialUpdateCommentOutput;
+import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentInput;
+import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentOutput;
 import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishCommentInput;
 import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishCommentOutput;
 import com.tinqinacademy.comment.persistence.entities.Comment;
@@ -64,19 +64,18 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public PartialUpdateCommentOutput partialUpdateComment(PartialUpdateCommentInput input) {
+    public ContentUpdateCommentOutput contentUpdateComment(ContentUpdateCommentInput input) {
         log.info("Start partialUpdateComment input: {}", input);
 
         Comment comment = commentRepository.findById(UUID.fromString(input.getCommentId()))
                 .orElseThrow(() -> new NotFoundException(String.format("Comment with id %s does not exist", input.getCommentId())));
 
         comment.setContent(input.getContent());
+        comment.setLastEditedBy(UUID.randomUUID());
 
-        commentRepository.save(comment);
+        Comment updatedComment = commentRepository.save(comment);
 
-        PartialUpdateCommentOutput output = PartialUpdateCommentOutput.builder()
-                .id(input.getCommentId())
-                .build();
+        ContentUpdateCommentOutput output = conversionService.convert(updatedComment, ContentUpdateCommentOutput.class);
 
         log.info("End partialUpdateComment output: {}", output);
 

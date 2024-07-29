@@ -7,6 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Slf4j
 @Component
@@ -22,6 +23,7 @@ public class CommentToGetCommentsOutputConverter implements Converter<Comment, G
                 .content(input.getContent())
                 .publishDate(input.getPublishDate())
                 .lastEditedDate(input.getLastEditedDate())
+                .lastEditedBy(input.getLastEditedBy())
                 .build();
 
         log.info("End converting rom Comment to GetCommentsOutput with output: {}", output);

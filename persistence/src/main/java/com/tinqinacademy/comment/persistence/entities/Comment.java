@@ -40,4 +40,7 @@ public class Comment {
     @UpdateTimestamp
     @Column(name = "last_edited_date")
     private LocalDateTime lastEditedDate;
+
+    @Column(name = "last_edited_by")
+    private UUID lastEditedBy;
 }

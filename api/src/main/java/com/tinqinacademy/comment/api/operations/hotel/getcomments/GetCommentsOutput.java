@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,5 +19,5 @@ public class GetCommentsOutput {
     private String content;
     private LocalDateTime publishDate;
     private LocalDateTime lastEditedDate;
-//    private LocalDateTime lastEditedBy;
+    private UUID lastEditedBy;
 }

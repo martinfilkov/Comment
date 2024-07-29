@@ -20,6 +20,7 @@ public class PublishCommentInputToCommentConverter implements Converter<PublishC
                 .firstName(input.getFirstName())
                 .lastName(input.getLastName())
                 .content(input.getContent())
+                .lastEditedBy(UUID.randomUUID())
                 .build();
 
         log.info("End converting from PublishCommentInput to Comment with output: {}", output);
