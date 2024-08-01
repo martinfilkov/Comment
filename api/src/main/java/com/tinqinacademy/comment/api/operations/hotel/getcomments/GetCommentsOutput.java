@@ -1,8 +1,8 @@
 package com.tinqinacademy.comment.api.operations.hotel.getcomments;
 
+import com.tinqinacademy.comment.api.operations.base.OperationOutput;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -12,7 +12,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @ToString
-public class GetCommentsOutput {
+public class GetCommentsOutput implements OperationOutput {
     private String id;
     private String firstName;
     private String lastName;

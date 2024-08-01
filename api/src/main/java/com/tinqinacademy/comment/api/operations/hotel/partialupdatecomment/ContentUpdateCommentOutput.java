@@ -1,5 +1,6 @@
 package com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment;
 
+import com.tinqinacademy.comment.api.operations.base.OperationOutput;
 import lombok.*;
 
 @NoArgsConstructor
@@ -8,6 +9,6 @@ import lombok.*;
 @Setter
 @Builder
 @ToString
-public class ContentUpdateCommentOutput {
+public class ContentUpdateCommentOutput implements OperationOutput {
     private String id;
 }
