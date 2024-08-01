@@ -1,5 +1,6 @@
 package com.tinqinacademy.comment.api.operations.hotel.getcomments;
 
+import com.tinqinacademy.comment.api.operations.base.OperationOutput;
 import lombok.*;
 
 import java.util.List;
@@ -10,6 +11,6 @@ import java.util.List;
 @Setter
 @Builder
 @ToString
-public class GetCommentsOutputList {
+public class GetCommentsOutputList implements OperationOutput {
     List<GetCommentsOutput> comments;
 }

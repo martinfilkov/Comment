@@ -1,26 +1,26 @@
 package com.tinqinacademy.comment.rest.controllers;
 
+import com.tinqinacademy.comment.api.operations.base.Errors;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentInput;
+import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOperation;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOutput;
 import com.tinqinacademy.comment.api.operations.system.updatecomment.AdminUpdateCommentInput;
+import com.tinqinacademy.comment.api.operations.system.updatecomment.AdminUpdateCommentOperation;
 import com.tinqinacademy.comment.api.operations.system.updatecomment.AdminUpdateCommentOutput;
-import com.tinqinacademy.comment.core.services.SystemService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.vavr.control.Either;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class SystemController {
-    private final SystemService systemService;
-
-    @Autowired
-    public SystemController(SystemService systemService) {
-        this.systemService = systemService;
-    }
+@RequiredArgsConstructor
+public class SystemController extends BaseController{
+    private final AdminUpdateCommentOperation adminUpdateCommentOperation;
+    private final DeleteCommentOperation deleteCommentOperation;
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully updated comment"),
@@ -28,17 +28,17 @@ public class SystemController {
             @ApiResponse(responseCode = "404", description = "Comment not found")
     })
     @PatchMapping(URLMapping.ADMIN_UPDATE_COMMENT)
-    public ResponseEntity<AdminUpdateCommentOutput> adminUpdateComment(
+    public ResponseEntity<?> adminUpdateComment(
             @PathVariable("commentId") String id,
             @Valid @RequestBody AdminUpdateCommentInput request
-            ){
+    ) {
         AdminUpdateCommentInput input = request.toBuilder()
                 .commentId(id)
                 .build();
 
-        AdminUpdateCommentOutput output = systemService.adminUpdateComment(input);
+        Either<Errors, AdminUpdateCommentOutput> output = adminUpdateCommentOperation.process(input);
 
-        return new ResponseEntity<>(output, HttpStatus.OK);
+        return handleResponse(output, HttpStatus.OK);
     }
 
     @ApiResponses(value = {
@@ -47,13 +47,13 @@ public class SystemController {
             @ApiResponse(responseCode = "404", description = "Comment not found")
     })
     @DeleteMapping(URLMapping.DELETE_COMMENT)
-    public ResponseEntity<DeleteCommentOutput> deleteComment(@PathVariable("commentId") String id){
+    public ResponseEntity<?> deleteComment(@PathVariable("commentId") String id) {
         DeleteCommentInput input = DeleteCommentInput.builder()
                 .commentId(id)
                 .build();
 
-        DeleteCommentOutput output = systemService.deleteComment(input);
+        Either<Errors, DeleteCommentOutput> output = deleteCommentOperation.process(input);
 
-        return new ResponseEntity<>(output, HttpStatus.ACCEPTED);
+        return handleResponse(output, HttpStatus.ACCEPTED);
     }
 }
