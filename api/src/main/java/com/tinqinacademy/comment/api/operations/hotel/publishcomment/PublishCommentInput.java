@@ -12,6 +12,7 @@ import lombok.*;
 @Builder(toBuilder = true)
 @ToString
 public class PublishCommentInput implements OperationInput {
+    @NotBlank(message = "roomId cannot be blank")
     @JsonIgnore
     private String roomId;
 
