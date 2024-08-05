@@ -1,6 +1,7 @@
 package com.tinqinacademy.comment.rest.controllers;
 
 import com.tinqinacademy.comment.api.operations.base.Errors;
+import com.tinqinacademy.comment.api.operations.base.URLMapping;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentInput;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOperation;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOutput;
@@ -30,7 +31,7 @@ public class SystemController extends BaseController{
     @PatchMapping(URLMapping.ADMIN_UPDATE_COMMENT)
     public ResponseEntity<?> adminUpdateComment(
             @PathVariable("commentId") String id,
-            @Valid @RequestBody AdminUpdateCommentInput request
+            @RequestBody AdminUpdateCommentInput request
     ) {
         AdminUpdateCommentInput input = request.toBuilder()
                 .commentId(id)

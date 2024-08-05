@@ -1,4 +1,4 @@
-package com.tinqinacademy.comment.rest.controllers;
+package com.tinqinacademy.comment.api.operations.base;
 
 public class URLMapping {
     //Hotel
