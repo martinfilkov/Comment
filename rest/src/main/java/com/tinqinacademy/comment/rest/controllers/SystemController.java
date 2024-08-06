@@ -1,7 +1,7 @@
 package com.tinqinacademy.comment.rest.controllers;
 
 import com.tinqinacademy.comment.api.operations.base.Errors;
-import com.tinqinacademy.comment.api.operations.base.URLMapping;
+import com.tinqinacademy.comment.api.operations.base.CommentMappings;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentInput;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOperation;
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOutput;
@@ -11,7 +11,6 @@ import com.tinqinacademy.comment.api.operations.system.updatecomment.AdminUpdate
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.vavr.control.Either;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +27,7 @@ public class SystemController extends BaseController{
             @ApiResponse(responseCode = "403", description = "User not authorized"),
             @ApiResponse(responseCode = "404", description = "Comment not found")
     })
-    @PatchMapping(URLMapping.ADMIN_UPDATE_COMMENT)
+    @PatchMapping(CommentMappings.ADMIN_UPDATE_COMMENT)
     public ResponseEntity<?> adminUpdateComment(
             @PathVariable("commentId") String id,
             @RequestBody AdminUpdateCommentInput request
@@ -47,7 +46,7 @@ public class SystemController extends BaseController{
             @ApiResponse(responseCode = "403", description = "User not authorized"),
             @ApiResponse(responseCode = "404", description = "Comment not found")
     })
-    @DeleteMapping(URLMapping.DELETE_COMMENT)
+    @DeleteMapping(CommentMappings.DELETE_COMMENT)
     public ResponseEntity<?> deleteComment(@PathVariable("commentId") String id) {
         DeleteCommentInput input = DeleteCommentInput.builder()
                 .commentId(id)

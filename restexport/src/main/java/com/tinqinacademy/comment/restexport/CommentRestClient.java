@@ -16,20 +16,20 @@ import org.springframework.http.ResponseEntity;
 @Headers({"Content-Type: application/json"})
 public interface CommentRestClient {
     // Hotel
-    @RequestLine("GET /api/hotel/comments/{id}")
-    ResponseEntity<GetCommentsOutputList> getComments(@Param("id") String id);
+    @RequestLine("GET /api/hotel/{roomId}/comment")
+    GetCommentsOutputList getComments(@Param("roomId") String roomId);
 
-    @RequestLine("POST /api/hotel/comments/{id}")
-    ResponseEntity<PublishCommentOutput> publishComment(@Param("id") String id, PublishCommentInput request);
+    @RequestLine("POST /api/hotel/{roomId}/comment")
+    PublishCommentOutput publishComment(@Param("roomId") String roomId, PublishCommentInput request);
 
-    @RequestLine("PUT /api/hotel/comments/{id}")
-    ResponseEntity<ContentUpdateCommentOutput> contentUpdate(@Param("id") String id, ContentUpdateCommentInput request);
+    @RequestLine("PUT /api/hotel/comment/{commentId}")
+    ContentUpdateCommentOutput contentUpdate(@Param("commentId") String commentId, ContentUpdateCommentInput request);
 
     // System
-    @RequestLine("PATCH /api/system/comments/{id}")
+    @RequestLine("PATCH /api/system/comment/{commentId}")
     @Headers({"Content-Type: application/json-patch+json"})
-    ResponseEntity<AdminUpdateCommentOutput> adminUpdateComment(@Param("id") String id, AdminUpdateCommentInput request);
+    AdminUpdateCommentOutput adminUpdateComment(@Param("commentId") String commentId, AdminUpdateCommentInput request);
 
-    @RequestLine("DELETE /api/system/comments/{id}")
-    ResponseEntity<DeleteCommentOutput> deleteComment(@Param("id") String id);
+    @RequestLine("DELETE /api/system/comment/{commentId}")
+    DeleteCommentOutput deleteComment(@Param("commentId") String commentId);
 }

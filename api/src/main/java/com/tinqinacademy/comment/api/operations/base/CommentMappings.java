@@ -1,6 +1,6 @@
 package com.tinqinacademy.comment.api.operations.base;
 
-public class URLMapping {
+public class CommentMappings {
     //Hotel
     public final static String GET_COMMENTS = "/api/hotel/{roomId}/comment";
     public final static String PUBLISH_COMMENT = "/api/hotel/{roomId}/comment";

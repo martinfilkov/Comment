@@ -1,7 +1,7 @@
 package com.tinqinacademy.comment.rest.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tinqinacademy.comment.api.operations.base.URLMapping;
+import com.tinqinacademy.comment.api.operations.base.CommentMappings;
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentInput;
 import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishCommentInput;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ class HotelControllerTest {
     @Test
     public void givenRoomId_whenGetComments_thenReturnCommentsList() throws Exception {
         String roomId = "1";
-        mockMvc.perform(get(URLMapping.GET_COMMENTS, roomId)
+        mockMvc.perform(get(CommentMappings.GET_COMMENTS, roomId)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.comments").exists())
@@ -46,7 +46,7 @@ class HotelControllerTest {
 
         String requestBody = objectMapper.writeValueAsString(input);
 
-        mockMvc.perform(post(URLMapping.PUBLISH_COMMENT, input.getRoomId())
+        mockMvc.perform(post(CommentMappings.PUBLISH_COMMENT, input.getRoomId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isCreated())
@@ -63,7 +63,7 @@ class HotelControllerTest {
 
         String requestBody = objectMapper.writeValueAsString(input);
 
-        mockMvc.perform(patch(URLMapping.CONTENT_UPDATE_COMMENT, input.getCommentId())
+        mockMvc.perform(patch(CommentMappings.CONTENT_UPDATE_COMMENT, input.getCommentId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
