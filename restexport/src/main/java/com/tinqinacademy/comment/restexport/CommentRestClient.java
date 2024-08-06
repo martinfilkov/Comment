@@ -1,6 +1,5 @@
 package com.tinqinacademy.comment.restexport;
 
-import com.tinqinacademy.comment.api.operations.base.URLMapping;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsOutputList;
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentInput;
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentOutput;
@@ -9,27 +8,28 @@ import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishComm
 import com.tinqinacademy.comment.api.operations.system.deletecomment.DeleteCommentOutput;
 import com.tinqinacademy.comment.api.operations.system.updatecomment.AdminUpdateCommentInput;
 import com.tinqinacademy.comment.api.operations.system.updatecomment.AdminUpdateCommentOutput;
+import feign.Headers;
 import feign.Param;
-import org.springframework.cloud.openfeign.FeignClient;
+import feign.RequestLine;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-@FeignClient("comment-service")
+@Headers({"Content-Type: application/json"})
 public interface CommentRestClient {
-    //Hotel
-    @GetMapping(URLMapping.GET_COMMENTS)
+    // Hotel
+    @RequestLine("GET /api/hotel/comments/{id}")
     ResponseEntity<GetCommentsOutputList> getComments(@Param("id") String id);
 
-    @PostMapping(URLMapping.PUBLISH_COMMENT)
+    @RequestLine("POST /api/hotel/comments/{id}")
     ResponseEntity<PublishCommentOutput> publishComment(@Param("id") String id, PublishCommentInput request);
 
-    @PutMapping(URLMapping.CONTENT_UPDATE_COMMENT)
+    @RequestLine("PUT /api/hotel/comments/{id}")
     ResponseEntity<ContentUpdateCommentOutput> contentUpdate(@Param("id") String id, ContentUpdateCommentInput request);
 
-    //System
-    @PatchMapping(URLMapping.ADMIN_UPDATE_COMMENT)
+    // System
+    @RequestLine("PATCH /api/system/comments/{id}")
+    @Headers({"Content-Type: application/json-patch+json"})
     ResponseEntity<AdminUpdateCommentOutput> adminUpdateComment(@Param("id") String id, AdminUpdateCommentInput request);
 
-    @DeleteMapping(URLMapping.DELETE_COMMENT)
+    @RequestLine("DELETE /api/system/comments/{id}")
     ResponseEntity<DeleteCommentOutput> deleteComment(@Param("id") String id);
 }
