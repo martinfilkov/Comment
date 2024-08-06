@@ -1,7 +1,7 @@
 package com.tinqinacademy.comment.rest.controllers;
 
 import com.tinqinacademy.comment.api.operations.base.Errors;
-import com.tinqinacademy.comment.api.operations.base.URLMapping;
+import com.tinqinacademy.comment.api.operations.base.CommentMappings;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsInput;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsOperation;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsOutputList;
@@ -14,7 +14,6 @@ import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishComm
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.vavr.control.Either;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,7 @@ public class HotelController extends BaseController{
             @ApiResponse(responseCode = "200", description = "Successfully returned comments"),
             @ApiResponse(responseCode = "403", description = "User not authorized")
     })
-    @GetMapping(URLMapping.GET_COMMENTS)
+    @GetMapping(CommentMappings.GET_COMMENTS)
     public ResponseEntity<?> getComments(@PathVariable("roomId") String id) {
         GetCommentsInput input = GetCommentsInput.builder()
                 .roomId(id)
@@ -46,7 +45,7 @@ public class HotelController extends BaseController{
             @ApiResponse(responseCode = "201", description = "Successfully published a comment"),
             @ApiResponse(responseCode = "403", description = "User not authorized")
     })
-    @PostMapping(URLMapping.PUBLISH_COMMENT)
+    @PostMapping(CommentMappings.PUBLISH_COMMENT)
     public ResponseEntity<?> publishComment(
             @PathVariable("roomId") String id,
             @RequestBody PublishCommentInput request) {
@@ -64,7 +63,7 @@ public class HotelController extends BaseController{
             @ApiResponse(responseCode = "403", description = "User not authorized"),
             @ApiResponse(responseCode = "404", description = "Comment not found")
     })
-    @PutMapping(URLMapping.CONTENT_UPDATE_COMMENT)
+    @PutMapping(CommentMappings.CONTENT_UPDATE_COMMENT)
     public ResponseEntity<?> contentUpdate(
             @PathVariable("commentId") String id,
             @RequestBody ContentUpdateCommentInput request
