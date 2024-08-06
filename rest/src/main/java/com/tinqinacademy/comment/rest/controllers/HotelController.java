@@ -1,9 +1,9 @@
 package com.tinqinacademy.comment.rest.controllers;
 
 import com.tinqinacademy.comment.api.operations.base.Errors;
+import com.tinqinacademy.comment.api.operations.base.URLMapping;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsInput;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsOperation;
-import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsOutput;
 import com.tinqinacademy.comment.api.operations.hotel.getcomments.GetCommentsOutputList;
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentInput;
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentOperation;
@@ -49,7 +49,7 @@ public class HotelController extends BaseController{
     @PostMapping(URLMapping.PUBLISH_COMMENT)
     public ResponseEntity<?> publishComment(
             @PathVariable("roomId") String id,
-            @Valid @RequestBody PublishCommentInput request) {
+            @RequestBody PublishCommentInput request) {
         PublishCommentInput input = request.toBuilder()
                 .roomId(id)
                 .build();
@@ -67,7 +67,7 @@ public class HotelController extends BaseController{
     @PutMapping(URLMapping.CONTENT_UPDATE_COMMENT)
     public ResponseEntity<?> contentUpdate(
             @PathVariable("commentId") String id,
-            @Valid @RequestBody ContentUpdateCommentInput request
+            @RequestBody ContentUpdateCommentInput request
     ) {
         ContentUpdateCommentInput input = request.toBuilder()
                 .commentId(id)

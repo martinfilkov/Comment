@@ -1,6 +1,7 @@
 package com.tinqinacademy.comment.rest.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tinqinacademy.comment.api.operations.base.URLMapping;
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentInput;
 import com.tinqinacademy.comment.api.operations.hotel.publishcomment.PublishCommentInput;
 import org.junit.jupiter.api.Test;
