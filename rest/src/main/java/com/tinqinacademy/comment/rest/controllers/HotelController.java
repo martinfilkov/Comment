@@ -63,7 +63,7 @@ public class HotelController extends BaseController{
             @ApiResponse(responseCode = "403", description = "User not authorized"),
             @ApiResponse(responseCode = "404", description = "Comment not found")
     })
-    @PutMapping(CommentMappings.CONTENT_UPDATE_COMMENT)
+    @PatchMapping(CommentMappings.CONTENT_UPDATE_COMMENT)
     public ResponseEntity<?> contentUpdate(
             @PathVariable("commentId") String id,
             @RequestBody ContentUpdateCommentInput request
