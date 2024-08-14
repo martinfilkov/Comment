@@ -1,6 +1,7 @@
 package com.tinqinacademy.comment.core.operations.hotel;
 
 import com.tinqinacademy.comment.api.operations.base.Errors;
+import com.tinqinacademy.comment.api.operations.exception.NotAvailableException;
 import com.tinqinacademy.comment.api.operations.exception.NotFoundException;
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentInput;
 import com.tinqinacademy.comment.api.operations.hotel.partialupdatecomment.ContentUpdateCommentOperation;
@@ -30,8 +31,8 @@ public class ContentUpdateCommentOperationProcessor extends BaseOperationProcess
 
     @Autowired
     public ContentUpdateCommentOperationProcessor(ConversionService conversionService,
-                                                     Validator validator,
-                                                     ErrorMapper errorMapper, CommentRepository commentRepository) {
+                                                  Validator validator,
+                                                  ErrorMapper errorMapper, CommentRepository commentRepository) {
         super(conversionService, validator, errorMapper);
         this.commentRepository = commentRepository;
     }
@@ -47,8 +48,9 @@ public class ContentUpdateCommentOperationProcessor extends BaseOperationProcess
                     log.info("Start partialUpdateComment input: {}", input);
 
                     Comment comment = getCommentIfValid(input);
+                    checkIfCommentBelongsToUser(input, comment);
                     comment.setContent(input.getContent());
-                    comment.setLastEditedBy(UUID.randomUUID());
+                    comment.setLastEditedBy(UUID.fromString(input.getUserId()));
 
                     Comment updatedComment = commentRepository.save(comment);
 
@@ -68,5 +70,11 @@ public class ContentUpdateCommentOperationProcessor extends BaseOperationProcess
     private Comment getCommentIfValid(ContentUpdateCommentInput input) {
         return commentRepository.findById(UUID.fromString(input.getCommentId()))
                 .orElseThrow(() -> new NotFoundException(String.format("Comment with id %s does not exist", input.getCommentId())));
+    }
+
+    private void checkIfCommentBelongsToUser(ContentUpdateCommentInput input, Comment comment) {
+        if (!input.getUserId().equals(comment.getUserId().toString())) {
+            throw new NotAvailableException("Comment must belong to the user who is trying to edit it");
+        }
     }
 }

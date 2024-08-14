@@ -17,9 +17,9 @@ public class AdminUpdateCommentInputToCommentConverter implements Converter<Admi
 
         Comment output = Comment.builder()
                 .id(UUID.fromString(input.getCommentId()))
-                .firstName(input.getFirstName())
-                .lastName(input.getLastName())
                 .content(input.getContent())
+                .roomId(UUID.fromString(input.getRoomId()))
+                .userId(UUID.fromString(input.getUserId()))
                 .build();
 
         log.info("Start converting from AdminUpdateCommentInput to Comment with output: {}", output);

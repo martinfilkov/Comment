@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Slf4j
 @Component
 public class CommentToGetCommentsOutputConverter implements Converter<Comment, GetCommentsOutput> {
@@ -15,8 +17,7 @@ public class CommentToGetCommentsOutputConverter implements Converter<Comment, G
 
         GetCommentsOutput output = GetCommentsOutput.builder()
                 .id(input.getId().toString())
-                .firstName(input.getFirstName())
-                .lastName(input.getLastName())
+                .userId(input.getUserId().toString())
                 .content(input.getContent())
                 .publishDate(input.getPublishDate())
                 .lastEditedDate(input.getLastEditedDate())

@@ -18,4 +18,7 @@ public class ContentUpdateCommentInput implements OperationInput {
 
     @NotBlank(message = "Content cannot be blank")
     private String content;
+
+    @NotBlank(message = "User id cannot be blank")
+    private String userId;
 }
