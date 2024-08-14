@@ -52,13 +52,8 @@ public class AdminUpdateCommentOperationProcessor extends BaseOperationProcessor
 
                     Comment comment = getCommentIfValid(input);
 
-                    Comment inputComment = conversionService.convert(input, Comment.class);
-
-                    JsonNode currentNode = mapper.valueToTree(comment);
-                    JsonNode inputNode = mapper.valueToTree(inputComment);
-
-                    JsonMergePatch patch = JsonMergePatch.fromJson(inputNode);
-                    Comment updatedComment = mapper.treeToValue(patch.apply(currentNode), Comment.class);
+                    Comment updatedComment = conversionService.convert(input, Comment.class);
+                    updatedComment.setPublishDate(comment.getPublishDate());
                     commentRepository.save(updatedComment);
 
                     AdminUpdateCommentOutput output = conversionService.convert(updatedComment, AdminUpdateCommentOutput.class);

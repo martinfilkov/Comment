@@ -11,7 +11,6 @@ import com.tinqinacademy.comment.api.operations.system.updatecomment.AdminUpdate
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
-import org.springframework.http.ResponseEntity;
 
 @Headers({"Content-Type: application/json"})
 public interface CommentRestClient {
@@ -22,12 +21,11 @@ public interface CommentRestClient {
     @RequestLine("POST /api/hotel/{roomId}/comment")
     PublishCommentOutput publishComment(@Param("roomId") String roomId, PublishCommentInput request);
 
-    @RequestLine("PUT /api/hotel/comment/{commentId}")
+    @RequestLine("PATCH /api/hotel/comment/{commentId}")
     ContentUpdateCommentOutput contentUpdate(@Param("commentId") String commentId, ContentUpdateCommentInput request);
 
     // System
-    @RequestLine("PATCH /api/system/comment/{commentId}")
-    @Headers({"Content-Type: application/json-patch+json"})
+    @RequestLine("PUT /api/system/comment/{commentId}")
     AdminUpdateCommentOutput adminUpdateComment(@Param("commentId") String commentId, AdminUpdateCommentInput request);
 
     @RequestLine("DELETE /api/system/comment/{commentId}")

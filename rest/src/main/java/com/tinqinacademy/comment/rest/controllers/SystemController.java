@@ -27,7 +27,7 @@ public class SystemController extends BaseController{
             @ApiResponse(responseCode = "403", description = "User not authorized"),
             @ApiResponse(responseCode = "404", description = "Comment not found")
     })
-    @PatchMapping(CommentMappings.ADMIN_UPDATE_COMMENT)
+    @PutMapping(CommentMappings.ADMIN_UPDATE_COMMENT)
     public ResponseEntity<?> adminUpdateComment(
             @PathVariable("commentId") String id,
             @RequestBody AdminUpdateCommentInput request

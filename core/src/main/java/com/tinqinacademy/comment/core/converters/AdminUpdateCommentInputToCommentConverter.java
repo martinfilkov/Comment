@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Slf4j
@@ -20,6 +21,8 @@ public class AdminUpdateCommentInputToCommentConverter implements Converter<Admi
                 .content(input.getContent())
                 .roomId(UUID.fromString(input.getRoomId()))
                 .userId(UUID.fromString(input.getUserId()))
+                .lastEditedBy(UUID.fromString(input.getUserId()))
+                .lastEditedDate(LocalDateTime.now())
                 .build();
 
         log.info("Start converting from AdminUpdateCommentInput to Comment with output: {}", output);
