@@ -17,10 +17,9 @@ public class PublishCommentInputToCommentConverter implements Converter<PublishC
 
         Comment output = Comment.builder()
                 .roomId(UUID.fromString(input.getRoomId()))
-                .firstName(input.getFirstName())
-                .lastName(input.getLastName())
+                .userId(UUID.fromString(input.getUserId()))
                 .content(input.getContent())
-                .lastEditedBy(UUID.randomUUID())
+                .lastEditedBy(UUID.fromString(input.getUserId()))
                 .build();
 
         log.info("End converting from PublishCommentInput to Comment with output: {}", output);
