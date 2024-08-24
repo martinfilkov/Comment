@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tinqinacademy.comment.api.operations.base.OperationInput;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.hibernate.validator.constraints.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,5 +15,6 @@ import lombok.*;
 public class DeleteCommentInput implements OperationInput {
     @NotBlank(message = "comment cannot be blank")
     @JsonIgnore
+    @UUID(message = "UUID syntax required")
     private String commentId;
 }
